@@ -1,0 +1,199 @@
+homeassistant:
+  name: Home
+  latitude: !secret lati
+  longitude: !secret longi
+  temperature_unit: F
+  time_zone: America/Chicago
+
+  customize:
+    sensor.weather_daily_summary:
+     hidden: true    
+    sensor.weather_hourly_summary:
+     hidden: true  
+    sensor.weather_humidity:
+     hidden: true   
+    sensor.weather_icon:
+     hidden: true
+    sensor.weather_nearest_storm_distance:
+     hidden: true
+    sensor.weather_precip_probability:
+     hidden: true
+    sensor.weather_pressure:
+     hidden: true
+    sensor.weather_summary:
+     hidden: true
+    sensor.weather_wind_speed:
+     hidden: true
+
+http:
+  api_password: !secret http_password
+
+arpwatch:
+
+logbook:
+
+sun:
+
+frontend:
+
+discovery:
+
+# Checks for available updates
+#updater:
+
+# Allows you to issue voice commands from the frontend
+#conversation:
+
+history:
+
+sensor:
+  platform: time_date
+  display_options:
+    - 'date_time'
+
+# Prediction of weather
+sensor 2:
+  platform: forecast
+  api_key: !secret weather_api
+  monitored_conditions:
+    - summary
+    - icon
+    - nearest_storm_distance
+    - precip_probability
+    - temperature
+    - apparent_temperature
+    - wind_speed
+    - humidity
+    - pressure
+    - hourly_summary
+    - daily_summary
+
+group:
+  security:
+   view: yes
+   entities:
+   - binary_sensor.back_door
+   - binary_sensor.front_door
+   - binary_sensor.front_windows
+   - binary_sensor.living_room
+   - binary_sensor.master
+   - binary_sensor.rooms
+   
+  people:
+   view: yes
+   entities:
+   - device_tracker.60f189e3ca47
+   - device_tracker.00aefa890c93
+   - device_tracker.0cd746ae99d8
+
+  weather:
+   view: yes
+   entities:
+   - sensor.weather_apparent_temperature
+   - sensor.weather_daily_summary
+   - sensor.weather_hourly_summary
+   - sensor.weather_humidity
+   - sensor.weather_icon
+   - sensor.weather_nearest_storm_distance
+   - sensor.weather_precip_probability
+   - sensor.weather_pressure
+   - sensor.weather_summary
+   - sensor.weather_temperature
+   - sensor.weather_wind_speed
+
+
+
+zone:
+  name: Home
+  latitude: !secret lati
+  longitude: !secret longi
+  icon: mdi:castle  
+
+ 
+zone 2:
+  name: Work
+  latitude: 30.486485
+  longitude: -97.6619547
+  icon: mdi:worker
+
+
+wink:
+  access_token: !secret wink_token
+
+nest:
+  username: !secret nest_user
+  password: !secret nest_pass
+
+thermostat:
+  platform: nest
+
+media_player:
+  platform: cast
+  host: 10.0.200.10
+
+device_tracker:
+  platform: asuswrt
+  host: 10.0.200.182
+  protocol: telnet
+  mode: ap
+  username: !secret asus_user
+  password: !secret asus_pass
+
+  # If new discovered devices are tracked by default (default: yes)
+  track_new_devices: no
+  # Seconds between each scan for new devices (default: 12)
+  interval_seconds: 600
+  # Seconds to wait till marking someone as not home after not being seen
+  # (default: 180)
+  consider_home: 180
+
+notify:
+  platform: pushbullet
+  api_key: !secret push_bullet_api
+  name: pbnotify
+
+envisalink:
+#optional
+  port: 4025
+  evl_version: 4
+  keepalive_interval: 60
+  zonedump_interval: 30
+
+#required
+  host: 10.0.100.100
+  panel_type: HONEYWELL
+  user_name: !secret alarm_user
+  password: !secret alarm_pass
+  code: !secret alarm_code
+
+  zones:
+    1: 
+      name: 'Front Door'
+      type: 'opening'
+
+    2:
+      name: 'Living Room'
+      type: 'motion'
+
+    3:
+      name: 'Front Windows'
+      type: 'opening'
+
+    4: 
+      name: 'Rooms'
+      type: 'opening'
+
+    5:
+      name: 'Back Door'
+      type: 'opening'
+
+    6:
+      name: 'Master'
+      type: 'opening'
+
+  partitions:
+    1:
+      name: 'Home Alarm'
+
+automation: !include automation.yaml
+ 

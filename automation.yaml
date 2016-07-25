@@ -1,0 +1,50 @@
+- alias: 'Turn off outside lights at sunrise'
+  trigger:
+    platform: sun
+    event: 'sunrise'
+    offset: '00:30:00'
+  action:
+    service: light.turn_off
+    entity_id: light.porch_light
+
+- alias: 'Turn on outside lights at sunset'
+  trigger:
+    platform: sun
+    event: 'sunset'
+    offset: '-00:30:00'
+  action:
+    service: light.turn_on
+    entity_id: light.porch_light
+
+- alias: 'Send notification Front Door or Garage Opens'
+  trigger:
+    platform: state
+    entity_id: binary_sensor.front_door
+    from: 'off'
+    to: 'on'
+  condition:
+    condition: state
+    entity_id: device_tracker.60f189e3ca47
+    state: not_home 
+  action:
+    service: notify.pbnotify
+    data:
+      message: "Front or Garage Door Opened"
+      title: "Security Alert!"
+
+- alias: 'Send notification when Patio Door Opens'
+  trigger:
+    platform: state
+    entity_id: binary_sensor.back_door
+    from: 'off'
+    to: 'on'
+  condition:
+    condition: state
+    entity_id: device_tracker.60f189e3ca47
+    state: not_home
+  action:
+    service: notify.pbnotify
+    data:
+      message: "Patio Door Opened"
+      title: "Security Alert!"
+
