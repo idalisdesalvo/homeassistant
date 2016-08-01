@@ -1,0 +1,37 @@
+downlight_movement_on_10m:
+  alias: "Turn on downlight after movement"
+  sequence:
+    - service: light.turn_on
+      data:
+        entity_id: light.downlight
+    - delay:
+        minutes: 10
+    - service: light.turn_off
+      data:
+        entity_id: light.downlight
+
+foyer_turn_on_5m:
+  alias: "Turn on foyer for 5 minutes"
+  sequence:
+    - service: switch.turn_on
+      data:
+        entity_id: switch.foyer
+    - delay:
+        minutes: 5
+    - service: switch.turn_off
+      data:
+        entity_id: switch.foyer
+
+
+script.zach_light_on_2h:
+  alias: "Turn on Zachs Room for 2 hours"
+  sequence:
+    - service: light.turn_on
+      data:
+        entity_id: light.zachs_room
+    - delay:
+        hours: 2
+    - service: light.turn_off
+      data:
+        entity_id: light.zachs_room
+

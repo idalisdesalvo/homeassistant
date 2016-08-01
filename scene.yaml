@@ -1,0 +1,21 @@
+- name: Going to bed
+  entities:
+    light.living_room_table:
+      state: 'on'
+      brightness: '30'
+    light.downlight:
+      state: 'off'
+    switch.bedroom:
+      state: 'off'
+    switch.bedroom_closet:
+      state: 'off'
+    switch.foyer:
+      state: 'off'
+    switch.hallway:
+      state: 'off'
+    switch.kitchen_main:
+      state: 'off'
+    switch.living_main:
+      state: 'off'
+
+

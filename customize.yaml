@@ -1,0 +1,40 @@
+group.sense_group:
+   friendly_name: Connectivity
+
+thermostat.house:
+   entity_picture: /local/nest-thermostat-png.png
+   friendly_name: Nest
+
+light.living_room_table:
+   entity_picture: /local/table_lamp-2.png
+
+light.zachs_room:
+   entity_picture: /local/ceiling_fan.jpg
+
+light.dylan_fan_1:
+   entity_picture: /local/ceiling_fan.jpg
+
+light.dylan_fan_2:
+   entity_picture: /local/ceiling_fan.jpg
+
+light.porch_light:
+   entity_picture: /local/cree_led_bulb.png
+
+
+switch.foyer:
+   entity_picture: /local/zwave-leviton.png
+
+switch.bedroom:
+   entity_picture: /local/ceiling_fan.jpg
+
+switch.living_main:
+   entity_picture: /local/ceiling_fan.jpg
+
+switch.hallway:
+   entity_picture: /local/ceiling_light.jpg
+
+switch.bedroom_closet:
+   entity_picture: /local/zwave-leviton.png
+
+switch.kitchen_main:
+   entity_picture: /local/zwave-leviton.png

@@ -1,0 +1,92 @@
+#################
+##### VIEWS #####
+#################
+
+default_view:
+  view: yes
+  icon: mdi:home-variant
+  entities:
+      - thermostat.house
+      - sun.sun
+      - sensor.weather_apparent_temperature
+      - light.dylan_fan_1
+      - light.dylan_fan_2
+      - light.downlight
+      - light.living_room_table
+      - light.porch_light
+      - light.zachs_room
+      - switch.bedroom
+      - switch.bedroom_closet
+      - switch.foyer
+      - switch.hallway
+      - switch.kitchen_main
+      - switch.living_main
+      - group.sense_group
+
+family_tab:
+  view: yes
+  icon: mdi:human-male-female
+  entities:
+      - group.family
+
+security_tab:
+  view: yes
+  icon: mdi:security
+  entities:
+    - group.security
+    - group.alarm_actions
+
+weather_tab:
+  view: yes
+  icon: mdi:weather-partlycloudy
+  entities:
+    - sensor.weather_temperature
+    - sensor.weather_apparent_temperature
+    - sensor.weather_summary
+    - sensor.weather_daily_summary
+    - sensor.weather_hourly_summary
+    - sensor.weather_humidity
+    - sensor.weather_icon
+    - sensor.weather_nearest_storm_distance
+    - sensor.weather_precip_probability
+    - sensor.weather_pressure
+    - sensor.weather_wind_speed
+
+
+#################
+##### GROUPS #####
+#################
+
+family:
+  entities:
+      - device_tracker.60f189e3ca47
+      - device_tracker.00aefa890c93
+      - device_tracker.0cd746ae99d8
+
+security:
+  entities:
+    - binary_sensor.back_door
+    - binary_sensor.front_door
+    - binary_sensor.front_windows
+    - binary_sensor.living_room
+    - binary_sensor.master
+    - binary_sensor.rooms
+
+house_lights:
+  entities:
+    - light.dylan_fan_1
+    - light.dylan_fan_2
+    - light.downlight
+    - light.living_room_table
+    - light.porch_light
+    - light.zachs_room
+    - switch.bedroom
+    - switch.bedroom_closet
+    - switch.foyer
+    - switch.hallway
+    - switch.kitchen_main
+    - switch.living_main
+
+sense_group:
+  entities:
+    - sensor.speedtest_ping
