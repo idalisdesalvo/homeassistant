@@ -7,7 +7,7 @@ import urllib2
 from requests import post
 
 url = 'http://garcia.h0stname.net:8123/api/services/homeassistant/turn_on'
-headers = {'x-ha-access': 'nin96313','content-type': 'application/json'}
+headers = {'x-ha-access': '[ REDACTED ]','content-type': 'application/json'}
 
 # list of Dash button mac addresses
 macs = {
