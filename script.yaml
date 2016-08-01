@@ -22,8 +22,7 @@ foyer_turn_on_5m:
       data:
         entity_id: switch.foyer
 
-
-script.zach_light_on_2h:
+zach_light_on_2h:
   alias: "Turn on Zachs Room for 2 hours"
   sequence:
     - service: light.turn_on

@@ -50,10 +50,10 @@
 
 - alias: 'Turn on downlight when there is movement'
   trigger:
-    - platform: state
-      entity_id: binary_sensor.living_room
-      from: 'off'
-      to: 'on'
+    platform: state
+    entity_id: binary_sensor.living_room
+    from: 'off'
+    to: 'on'
   condition:
     condition: sun
     after: sunset
@@ -64,10 +64,10 @@
 
 - alias: 'Turn on foyer when entering house'
   trigger:
-    - platform: state
-      entity_id: binary_sensor.front_door
-      from: 'off'
-      to: 'on'
+    platform: state
+    entity_id: binary_sensor.front_door
+    from: 'off'
+    to: 'on'
   condition:
     condition: sun
     after: sunset
@@ -78,21 +78,17 @@
 
 - alias: 'Turn on Zachs room light'
   trigger:
-    - platform: time
-      after: '06:30'
+    platform: time
+    after: '06:30'
   condition:
-    - platform: time
-      weekday:
-      - 'mon'
-      - 'tues'
-      - 'wed'
-      - 'thu'
-      - 'fri'
+    condition: time
+    weekday:
+     - mon
+     - tue
+     - wed
+     - thu
+     - fri
   action:
     service: homeassistant.turn_on
     entity_id: script.zach_light_on_2h
-
-
-
-
 
