@@ -22,6 +22,8 @@ default_view:
       - switch.kitchen_main
       - switch.living_main
       - group.sense_group
+      - media_player.chromecastthx1138
+      - media_player.living_room_tv
 
 family_tab:
   view: yes

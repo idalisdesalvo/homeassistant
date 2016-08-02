@@ -2,6 +2,7 @@ homeassistant:
   name: Home
   latitude: !secret lati
   longitude: !secret longi
+  elevation: 216
   temperature_unit: F
   time_zone: America/Chicago
   customize: !include customize.yaml
@@ -9,10 +10,6 @@ homeassistant:
 group: !include group.yaml
 http:
   api_password: !secret http_password
-
-#arpwatch:
-
-
 
 
 logbook:
@@ -69,13 +66,11 @@ zone:
   longitude: !secret longi
   icon: mdi:castle  
 
- 
 zone 2:
   name: Work
   latitude: 30.486485
   longitude: -97.6619547
   icon: mdi:worker
-
 
 wink:
   access_token: !secret wink_token
@@ -91,8 +86,9 @@ thermostat:
   platform: nest
 
 media_player:
-  platform: cast
-  host: 10.0.200.10
+  - platform: cast
+    host: 10.0.200.10
+    name: Chromecast  
 
 device_tracker:
   platform: asuswrt

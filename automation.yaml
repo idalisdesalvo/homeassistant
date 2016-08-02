@@ -55,12 +55,17 @@
     from: 'off'
     to: 'on'
   condition:
-    condition: sun
-    after: sunset
-    before: sunrise
+    condition: and
+    conditions:     
+      - condition: time
+        after: '22:00'
+        before: '07:00'
+      - condition: state
+        entity_id: 'light.downlight'
+        state: 'off'
   action:
     service: homeassistant.turn_on
-    entity_id: script.downlight_movement_on_10m
+    entity_id: script.downlight_movement_on_5m
 
 - alias: 'Turn on foyer when entering house'
   trigger:
@@ -71,10 +76,9 @@
   condition:
     condition: sun
     after: sunset
-    before: sunrise 
   action:
     service: homeassistant.turn_on
-    entity_id: script.foyer_turn_on_5m
+    entity_id: script.foyer_turn_on_3m
 
 - alias: 'Turn on Zachs room light'
   trigger:

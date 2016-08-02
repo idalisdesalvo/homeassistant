@@ -1,8 +1,8 @@
 - name: Going to bed
   entities:
     light.living_room_table:
-      state: 'on'
-      brightness: '30'
+      state: 'off'
+     #brightness: '30'
     light.downlight:
       state: 'off'
     switch.bedroom:
