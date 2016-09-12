@@ -18,4 +18,20 @@
     switch.living_main:
       state: 'off'
 
+- name: Movie Mode
+  entities:
+    light.living_room_table:
+      state: 'off'
+    light.downlight:
+      state: 'off'
+    switch.foyer:
+      state: 'off'
+    switch.hallway:
+      state: 'off'
+    switch.kitchen_main:
+      state: 'off'
+    switch.living_main:
+      state: 'off'
+
+
 

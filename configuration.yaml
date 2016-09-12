@@ -3,7 +3,8 @@ homeassistant:
   latitude: !secret lati
   longitude: !secret longi
   elevation: 216
-  temperature_unit: F
+#  temperature_unit: F
+  unit_system: imperial
   time_zone: America/Chicago
   customize: !include customize.yaml
 
@@ -12,7 +13,8 @@ http:
   api_password: !secret http_password
 
 
-logbook:
+logger:
+  default: critical
 
 sun:
 
@@ -74,6 +76,7 @@ zone 2:
 
 wink:
   access_token: !secret wink_token
+  refresh_token: !secret wink_refresh
 
 ifttt:
   key: !secret ifttt_token
@@ -116,7 +119,8 @@ envisalink:
   port: 4025
   evl_version: 4
   keepalive_interval: 60
-  zonedump_interval: 30
+#  zonedump_interval: 30
+  zonedump_interval: 15
 
 #required
   host: 10.0.100.100
@@ -153,6 +157,13 @@ envisalink:
   partitions:
     1:
       name: 'Home Alarm'
+
+input_boolean:
+  wake_zach:
+    name: Light for Zach in the morning
+    initial: on
+    icon: mdi:alarm-multiple
+
 
 scene: !include scene.yaml
 automation: !include automation.yaml

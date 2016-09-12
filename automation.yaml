@@ -24,7 +24,7 @@
     to: 'on'
   condition:
     condition: state
-    entity_id: device_tracker.60f189e3ca47
+    entity_id: device_tracker.0c51011b025e
     state: not_home 
   action:
     service: notify.pbnotify
@@ -40,7 +40,7 @@
     to: 'on'
   condition:
     condition: state
-    entity_id: device_tracker.60f189e3ca47
+    entity_id: device_tracker.0c51011b025e
     state: not_home
   action:
     service: notify.pbnotify
@@ -84,16 +84,67 @@
 - alias: 'Turn on Zachs room light'
   trigger:
     platform: time
-    after: '06:30'
+    after: '06:15'
   condition:
-    condition: time
-    weekday:
-     - mon
-     - tue
-     - wed
-     - thu
-     - fri
+    condition: and
+    conditions:
+      - condition: time
+        weekday:
+         - mon
+         - tue
+         - wed
+         - thu
+         - fri
+      - condition: state
+        entity_id: input_boolean.wake_zach
+        state: 'on' 
   action:
     service: homeassistant.turn_on
     entity_id: script.zach_light_on_2h
 
+- alias: 'Turn off lights when leaving'
+  trigger:
+    platform: time
+    after: '07:15'
+  condition:
+    condition: and
+    conditions:
+      - condition: time
+        weekday:
+         - mon
+         - tue
+         - wed
+         - thu
+         - fri
+      - condition: state
+        entity_id: input_boolean.wake_zach
+        state: 'on'
+  action:
+    - service: homeassistant.turn_off
+      entity_id: group.all_lights
+    - service: homeassistant.turn_off
+      entity_id: group.all_switches
+
+
+- alias: 'Turn on lights for work and school week'
+  trigger:
+    platform: time
+    after: '06:15'
+  condition:
+    condition: and
+    conditions:
+      - condition: time
+        weekday:
+         - mon
+         - tue
+         - wed
+         - thu
+         - fri
+      - condition: state
+        entity_id: input_boolean.wake_zach
+        state: 'on'
+  action:
+    - service: light.turn_on
+      entity_id: light.downlight
+    - service: light.turn_on
+      entity_id: light.living_room_table
