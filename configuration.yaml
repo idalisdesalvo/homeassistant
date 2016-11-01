@@ -13,6 +13,9 @@ http:
   api_password: !secret http_password
 
 
+recorder:
+  purge_days: 90
+
 logger:
   default: critical
 
@@ -76,7 +79,7 @@ zone 2:
 
 wink:
   access_token: !secret wink_token
-  refresh_token: !secret wink_refresh
+#  refresh_token: !secret wink_refresh
 
 ifttt:
   key: !secret ifttt_token
@@ -95,7 +98,7 @@ media_player:
 
 device_tracker:
   platform: asuswrt
-  host: 10.0.200.182
+  host: 10.3.200.28
   protocol: telnet
   mode: ap
   username: !secret asus_user
@@ -119,11 +122,10 @@ envisalink:
   port: 4025
   evl_version: 4
   keepalive_interval: 60
-#  zonedump_interval: 30
-  zonedump_interval: 15
+  zonedump_interval: 30
 
 #required
-  host: 10.0.100.100
+  host: 10.3.100.100
   panel_type: HONEYWELL
   user_name: !secret alarm_user
   password: !secret alarm_pass

@@ -59,6 +59,15 @@ config_tab:
   icon: mdi:settings
   entities:
     - input_boolean.wake_zach
+    - automation.send_notification_front_door_or_garage_opens
+    - automation.send_notification_when_patio_door_opens
+    - automation.turn_off_lights_when_leaving
+    - automation.turn_off_outside_lights_at_sunrise
+    - automation.turn_on_downlight_when_there_is_movement
+    - automation.turn_on_foyer_when_entering_house
+    - automation.turn_on_lights_for_work_and_school_week
+    - automation.turn_on_outside_lights_at_sunset
+    - automation.turn_on_zachs_room_light
 
 #################
 ##### GROUPS #####
@@ -66,9 +75,9 @@ config_tab:
 
 family:
   entities:
-      - device_tracker.0c51011b025e
-      - device_tracker.00aefa890c93
-      - device_tracker.0cd746ae99d8
+      - device_tracker.joseph_iphone
+      - device_tracker.suzi_galaxy
+      - device_tracker.destiny_iphone
 
 security:
   entities:

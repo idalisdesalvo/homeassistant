@@ -1,4 +1,6 @@
 - alias: 'Turn off outside lights at sunrise'
+  initial_state: true
+  hide_entity: false
   trigger:
     platform: sun
     event: 'sunrise'
@@ -8,6 +10,8 @@
     entity_id: light.porch_light
 
 - alias: 'Turn on outside lights at sunset'
+  initial_state: true
+  hide_entity: false
   trigger:
     platform: sun
     event: 'sunset'
@@ -17,6 +21,8 @@
     entity_id: light.porch_light
 
 - alias: 'Send notification Front Door or Garage Opens'
+  initial_state: true
+  hide_entity: false
   trigger:
     platform: state
     entity_id: binary_sensor.front_door
@@ -24,15 +30,16 @@
     to: 'on'
   condition:
     condition: state
-    entity_id: device_tracker.0c51011b025e
+    entity_id: device_tracker.joseph_iphone
     state: not_home 
   action:
     service: notify.pbnotify
     data:
       message: "Front or Garage Door Opened"
-      title: "Security Alert!"
 
 - alias: 'Send notification when Patio Door Opens'
+  initial_state: true
+  hide_entity: false
   trigger:
     platform: state
     entity_id: binary_sensor.back_door
@@ -40,15 +47,16 @@
     to: 'on'
   condition:
     condition: state
-    entity_id: device_tracker.0c51011b025e
+    entity_id: device_tracker.joseph_iphone
     state: not_home
   action:
     service: notify.pbnotify
     data:
       message: "Patio Door Opened"
-      title: "Security Alert!"
 
 - alias: 'Turn on downlight when there is movement'
+  initial_state: true
+  hide_entity: false
   trigger:
     platform: state
     entity_id: binary_sensor.living_room
@@ -68,6 +76,8 @@
     entity_id: script.downlight_movement_on_5m
 
 - alias: 'Turn on foyer when entering house'
+  initial_state: true
+  hide_entity: false
   trigger:
     platform: state
     entity_id: binary_sensor.front_door
@@ -82,27 +92,26 @@
     entity_id: script.foyer_turn_on_3m
 
 - alias: 'Turn on Zachs room light'
+  initial_state: true
+  hide_entity: false
   trigger:
     platform: time
     after: '06:15'
   condition:
-    condition: and
-    conditions:
-      - condition: time
-        weekday:
-         - mon
-         - tue
-         - wed
-         - thu
-         - fri
-      - condition: state
-        entity_id: input_boolean.wake_zach
-        state: 'on' 
+    condition: time
+    weekday:
+      - mon
+      - tue
+      - wed
+      - thu
+      - fri
   action:
     service: homeassistant.turn_on
     entity_id: script.zach_light_on_2h
 
 - alias: 'Turn off lights when leaving'
+  initial_state: true
+  hide_entity: false
   trigger:
     platform: time
     after: '07:15'
@@ -127,6 +136,8 @@
 
 
 - alias: 'Turn on lights for work and school week'
+  initial_state: true
+  hide_entity: false
   trigger:
     platform: time
     after: '06:15'
@@ -148,3 +159,7 @@
       entity_id: light.downlight
     - service: light.turn_on
       entity_id: light.living_room_table
+    - service: switch.turn_on
+      entity_id: switch.living_main
+    - service: switch.turn_on
+      entity_id: switch.kitchen_main
