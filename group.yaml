@@ -8,7 +8,7 @@ default_view:
   entities:
       - thermostat.house
       - sun.sun
-      - sensor.forecastio_apparent_temperature
+      - sensor.dark_sky_apparent_temperature
       - light.dylan_fan_1
       - light.dylan_fan_2
       - light.downlight
@@ -24,6 +24,11 @@ default_view:
       - group.sense_group
       - media_player.chromecastthx1138
       - media_player.living_room_tv
+      - sensor.steam_76561197966512456
+      - sensor.steam_76561198158256106
+      - climate.house
+      - switch.wake_on_lan      
+      - shell_command.xbox_poweron
 
 family_tab:
   view: yes
@@ -42,17 +47,17 @@ weather_tab:
   view: yes
   icon: mdi:weather-partlycloudy
   entities:
-    - sensor.forecastio_temperature
-    - sensor.forecastio_apparent_temperature
-    - sensor.forecastio_summary
-    - sensor.forecastio_daily_summary
-    - sensor.forecastio_hourly_summary
-    - sensor.forecastio_humidity
-    - sensor.forecastio_icon
-    - sensor.forecastio_nearest_storm_distance
-    - sensor.forecastio_precip_probability
-    - sensor.forecastio_pressure
-    - sensor.forecastio_wind_speed
+    - sensor.dark_sky_temperature
+    - sensor.dark_sky_apparent_temperature
+    - sensor.dark_sky_summary
+    - sensor.dark_sky_daily_summary
+    - sensor.dark_sky_hourly_summary
+    - sensor.dark_sky_humidity
+    - sensor.dark_sky_icon
+    - sensor.dark_sky_nearest_storm_distance
+    - sensor.dark_sky_precip_probability
+    - sensor.dark_sky_pressure
+    - sensor.dark_sky_wind_speed
 
 config_tab:
   view: yes

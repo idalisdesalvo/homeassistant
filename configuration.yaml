@@ -11,7 +11,8 @@ homeassistant:
 group: !include group.yaml
 http:
   api_password: !secret http_password
-
+  ssl_certificate: /home/pi/.homeassistant/fullchain.pem
+  ssl_key: /home/pi/.homeassistant/privkey.pem
 
 recorder:
   purge_days: 90
@@ -40,8 +41,8 @@ sensor:
 
 # Prediction of weather
 sensor 2:
-  platform: forecast
-  api_key: !secret weather_api
+  platform: darksky
+  api_key: !secret darksky_api
   monitored_conditions:
     - summary
     - icon
@@ -63,7 +64,14 @@ sensor 3:
     - 30
   monitored_conditions:
     - ping
-    
+
+sensor 4:
+  platform: steam_online
+  api_key: 5A07C022C819060052840752BA4142DF
+  accounts: 
+    - 76561197966512456
+    - 76561198158256106
+    - 76561197980617560    
 
 zone:
   name: Home
@@ -78,8 +86,14 @@ zone 2:
   icon: mdi:worker
 
 wink:
-  access_token: !secret wink_token
+#  access_token: !secret wink_token
 #  refresh_token: !secret wink_refresh
+  email: !secret wink_email
+  password: !secret wink_password
+  client_id: !secret wink_client_id
+  client_secret: !secret wink_client_secret
+
+
 
 ifttt:
   key: !secret ifttt_token
@@ -88,8 +102,11 @@ nest:
   username: !secret nest_user
   password: !secret nest_pass
 
-thermostat:
+
+
+climate:
   platform: nest
+
 
 media_player:
   - platform: cast
@@ -160,12 +177,16 @@ envisalink:
     1:
       name: 'Home Alarm'
 
-input_boolean:
-  wake_zach:
-    name: Light for Zach in the morning
-    initial: on
-    icon: mdi:alarm-multiple
+switch:
+  - platform: wake_on_lan
+    host: 10.3.3.100
+    mac_address: d4-3d-7e-e2-6b-2b
 
+shell_command:
+  xbox_poweron: xbox-on --ip=10.3.200.25 --live_device_id=FD004A360F3C5158 
+
+
+alexa: !include alexa.yaml
 
 scene: !include scene.yaml
 automation: !include automation.yaml

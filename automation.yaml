@@ -35,6 +35,7 @@
   action:
     service: notify.pbnotify
     data:
+      title: "Front or Garage Door Opened"
       message: "Front or Garage Door Opened"
 
 - alias: 'Send notification when Patio Door Opens'
@@ -52,6 +53,7 @@
   action:
     service: notify.pbnotify
     data:
+      title: "Patio Door Opened"
       message: "Patio Door Opened"
 
 - alias: 'Turn on downlight when there is movement'
@@ -116,18 +118,13 @@
     platform: time
     after: '07:15'
   condition:
-    condition: and
-    conditions:
-      - condition: time
-        weekday:
-         - mon
-         - tue
-         - wed
-         - thu
-         - fri
-      - condition: state
-        entity_id: input_boolean.wake_zach
-        state: 'on'
+    condition: time
+    weekday:
+      - mon
+      - tue
+      - wed
+      - thu
+      - fri
   action:
     - service: homeassistant.turn_off
       entity_id: group.all_lights
@@ -142,18 +139,13 @@
     platform: time
     after: '06:15'
   condition:
-    condition: and
-    conditions:
-      - condition: time
-        weekday:
-         - mon
-         - tue
-         - wed
-         - thu
-         - fri
-      - condition: state
-        entity_id: input_boolean.wake_zach
-        state: 'on'
+    condition: time
+    weekday:
+      - mon
+      - tue
+      - wed
+      - thu
+      - fri
   action:
     - service: light.turn_on
       entity_id: light.downlight
@@ -163,3 +155,32 @@
       entity_id: switch.living_main
     - service: switch.turn_on
       entity_id: switch.kitchen_main
+
+
+- alias: 'Turn on lights for work from home'
+  initial_state: true
+  hide_entity: false
+  trigger:
+    platform: time
+    after: '13:00'
+  condition:
+    condition: time
+    weekday:
+      - mon
+      - tue
+      - wed
+      - thu
+      - fri
+  action:
+    - service: light.turn_on
+      entity_id: light.downlight
+    - service: switch.turn_on
+      entity_id: switch.hallway
+    - service: switch.turn_on
+      entity_id: switch.foyer
+    - service: switch.turn_on
+      entity_id: switch.kitchen_main
+    - service: light.turn_on
+      entity_id: light.dylan_fan_1
+    - service: light.turn_on
+      entity_id: light.dylan_fan_2
